@@ -1,0 +1,73 @@
+body {
+    background-color: #2a3d60;
+
+    /* Centering buttons to the middle of the screen */
+    display: flex; 
+    flex-direction: row; 
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh; 
+    margin: 0; 
+    gap: 20px; 
+}
+
+.header-container {
+    position: absolute; 
+    top: 80px; 
+    text-align: center; 
+    max-width: 650px; 
+    padding: 0 20px; 
+    color: whitesmoke; 
+}
+
+.button-container {
+    display: flex; 
+    gap: 20px; 
+    flex-wrap: wrap; 
+    justify-content: center;
+}
+
+.my-button {
+  --button_radius: 0.75em;
+  --button_color: #ffffff;
+  --button_outline_color: #0f131a;
+  font-size: 17px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--button_radius);
+  background: var(--button_outline_color);
+  padding: 0; 
+}
+
+.my-button .button_top {
+  display: block;
+  box-sizing: border-box;
+  border: 2px solid var(--button_outline_color);
+  border-radius: var(--button_radius);
+  padding: 0.75em 1.5em;
+  background: var(--button_color);
+  color: var(--button_outline_color);
+  transform: translateY(-0.2em);
+  transition: transform 0.1s ease;
+}
+
+.my-button:hover .button_top {
+  transform: translateY(-0.33em);
+}
+
+.my-button:active .button_top {
+  transform: translateY(0);
+}
+
+p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 60px; 
+}
+
+
+h1{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+}
+
+

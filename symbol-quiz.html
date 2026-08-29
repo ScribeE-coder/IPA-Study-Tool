@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Symbol Location Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script>
+    </script>
+    
+    <div class="header-container">
+        <h1>IPA Location Quiz</h1>
+    </div>
+
+    <script type="text/javascript">
+        function playthenGo(url) {
+            const audio = new Audio('Button Click.mp3'); 
+            audio.play(); 
+            audio.onended = () => window.location.href = url; 
+        }
+    </script>
+        <!-- Button to return back to the homepage -->
+            <button class="my-button" onclick="playthenGo('index.html')">
+                <span class="button_top">Back to Main Menu</span>
+            </button>
+            <style>
+                button {
+                    position: relative; 
+                    top: 250x;
+                    bottom: 200px;
+                    right: -15px;
+                }
+            </style>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>IPA Study Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="header-container">
+        <h1>Your New Favorite IPA Study Tool</h1>
+        <p>Click on the Symbol Location Quiz button for help memorizing locations of IPA symbols. Click on the Sound Find button for help memorizing what each symbol sounds like and click on the Sagittal Find button for a quiz to help you map sagittal diagrams with their corresponding IPA symbol! But more importantly, don't fail!</p>
+    </div>
+
+    <script type="text/javascript">
+        function playThenGo(url) {
+            const audio = new Audio("Button Click.mp3"); 
+            audio.play(); 
+            audio.onended = () => window.location.href = url; 
+        }
+    </script>
+    
+    <button class="my-button" onclick="playThenGo('symbol-quiz.html')">
+    <span class="button_top">Symbol Location Quiz</span>
+    </button>
+
+    <button class="my-button" onclick= "playThenGo('sound-find.html')">
+        <span class="button_top">Sound Find</span>
+    </button>
+
+    <button class="my-button" onclick= "playThenGo('sagittal-find.html')">
+        <span class="button_top">Sagittal Find</span>
+    </button>
+
+</body>
+</html>
