@@ -1,32 +1,32 @@
 /* This is an updated version of the Python IPA Study Tool */
 
-IPA_English_dict = {
-            "p": "voiceless bilabial plosive", 
-            "b": "voiced bilabial plosive", 
-            "t": "voiceless alveolar plosive", 
-            "d": "voiced alveolar plosive", 
-            "k": "voiceless velar plosive", 
-            "g": "voiced velar plosive", 
-            "m": "voiced bilabial nasal", 
-            "n": "voiced alveolar nasal",
-            "ŋ": "voiced velar nasal", 
-            "f": "voiceless labiodental fricative",
-            "v": "voiced labiodental fricative",
-            "θ": "voiceless dental fricative",
-            "ð": "voiced dental fricative",
-            "s": "voiceless alveolar fricative",
-            "z": "voiced alveolar fricative", 
-            "ʃ": "voiceless postalveolar fricative",
-            "ʒ": "voiced postalveolar fricative",
-            "h": "voiceless glottal fricative", 
-            "ʔ": "voiced glottal plosive",
-            "ɹ": "voiced alveolar approximant",
-            "j": "voiced palatal approximant",
-            "l": "voiced alveolar lateral-approximant",
-            "w": "voiced labial velar-approximant" 
-}
+const IPA_English_dict = {
+    "p": "voiceless bilabial plosive", 
+    "b": "voiced bilabial plosive", 
+    "t": "voiceless alveolar plosive", 
+    "d": "voiced alveolar plosive", 
+    "k": "voiceless velar plosive", 
+    "g": "voiced velar plosive", 
+    "m": "voiced bilabial nasal", 
+    "n": "voiced alveolar nasal",
+    "ŋ": "voiced velar nasal", 
+    "f": "voiceless labiodental fricative",
+    "v": "voiced labiodental fricative",
+    "θ": "voiceless dental fricative",
+    "ð": "voiced dental fricative",
+    "s": "voiceless alveolar fricative",
+    "z": "voiced alveolar fricative", 
+    "ʃ": "voiceless postalveolar fricative",
+    "ʒ": "voiced postalveolar fricative",
+    "h": "voiceless glottal fricative", 
+    "ʔ": "voiced glottal plosive",
+    "ɹ": "voiced alveolar approximant",
+    "j": "voiced palatal approximant",
+    "l": "voiced alveolar lateral-approximant",
+    "w": "voiced labial velar-approximant" 
+};
 
-IPA_Sound_dict = { 
+const IPA_Sound_dict = { 
     "p": "[p]ut my shit back",
     "b": "[b]itch ass", 
     "t": "[t]ake yo ass to sleep", 
@@ -50,47 +50,32 @@ IPA_Sound_dict = {
     "j": "[y]ou're done", 
     "l": "[l]et me catch yo ass in my shit again", 
     "w": "[w]hy is you in my business?"                
-}
+};
 
 function parse(input) {
     const parsed = {};
     for (const [symbol, desc] of Object.entries(input)) {
         const [voicing, place, manner] = desc.split(" ");
-        parsed[symbol] = {voicing, place, manner};
+        parsed[symbol] = { voicing, place, manner };
     }
     return parsed;
 }
 
-parsedDict = parse(IPA_English_dict); 
+const parsedDict = parse(IPA_English_dict);
 
-// computer chooses an IPA symbol, user has to give correct place, manner, and voicing
-// if user is not correct, computer should tell user where they went wrong 
 function getSymbol() {
-    const symbols = Object.keys(IPA_English_dict); 
-    const symbol = symbols[Math.floor(Math.random() * symbols.length)]; // picking a random symbol from the list 
-    return symbol; 
+    const symbols = Object.keys(IPA_English_dict);
+    return symbols[Math.floor(Math.random() * symbols.length)];
 }
-
-symbol = getSymbol();
-var message = `What is voicing, place, and manner of articulation of this symbol? ${symbol} `;
-var userInput = prompt(message); 
-const [userVoicing, userPlace, userManner] = userInput.split(" ");
 
 function checkAnswer(symbol, parsed_dict, userVoicing, userPlace, userManner) {
-    var correctAnswer = parsed_dict[symbol]; 
-    correctAnswer = Object.values(correctAnswer); 
-    let correctVoicing = correctAnswer[0]; 
-    let correctPlace = correctAnswer[1]; 
-    let correctManner = correctAnswer[2]; 
-    
-    if ((userVoicing === correctVoicing) && (userPlace === correctPlace) && (userManner === correctManner)) {
-        return true; 
-    } else {
-        return false; 
-    }
-}
+    const correctAnswer = Object.values(parsed_dict[symbol]);
+    const correctVoicing = correctAnswer[0];
+    const correctPlace = correctAnswer[1];
+    const correctManner = correctAnswer[2];
 
-console.log(checkAnswer(symbol, parsedDict, userVoicing, userPlace, userManner)); 
+    return (userVoicing === correctVoicing) && (userPlace === correctPlace) && (userManner === correctManner);
+}
 
 function soundFind() {
     return;
@@ -99,4 +84,35 @@ function soundFind() {
 function sagittalFind() {
     return;
 }
+
+let currentSymbol;
+
+function renderQuiz() {
+    currentSymbol = getSymbol();
+    const container = document.querySelector('.quiz-container');
+
+    container.innerHTML = `
+        <h2>${currentSymbol}</h2>
+        <input type="text" id="voicing-input" placeholder="voicing">
+        <input type="text" id="place-input" placeholder="place">
+        <input type="text" id="manner-input" placeholder="manner">
+        <button id="submit-btn">Submit</button>
+        <p id="feedback"></p>
+    `;
+
+    document.getElementById('submit-btn').addEventListener('click', () => {
+        const userVoicing = document.getElementById('voicing-input').value.trim().toLowerCase();
+        const userPlace = document.getElementById('place-input').value.trim().toLowerCase();
+        const userManner = document.getElementById('manner-input').value.trim().toLowerCase();
+
+        const isCorrect = checkAnswer(currentSymbol, parsedDict, userVoicing, userPlace, userManner);
+        document.getElementById('feedback').textContent = isCorrect ? "Correct" : "Not quite, try again.";
+
+        if (isCorrect) {
+            setTimeout(renderQuiz, 1000);
+        }
+    });
+}
+
+renderQuiz();
 
