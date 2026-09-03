@@ -62,15 +62,47 @@ body {
 
 p {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-top: 60px; 
+    margin-top: 10px; 
 }
-
 
 h1{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+    margin-top: 100px;
 }
 
 .quiz-container {
     text-align: center;
+}
+
+.main-menu {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  gap: 80px;
+}
+
+.glass-button {
+  background: none; 
+  backdrop-filter: none; 
+  border: none; 
+  border-radius: none;
+  padding: none; 
+  color: none; 
+  font-size: none; 
+  font-weight: none; 
+  cursor: none; 
+  transition: none; 
+  box-shadow: none; 
+
+}
+
+.glass-button:hover {
+  transform: none;
+  background: none; 
+  box-shadow: none; 
+}
+
+.glass-button:active {
+  transform: none; 
 }
 
