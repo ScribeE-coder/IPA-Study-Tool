@@ -96,7 +96,7 @@ function renderQuiz() {
         <input type="text" id="voicing-input" placeholder="voicing">
         <input type="text" id="place-input" placeholder="place">
         <input type="text" id="manner-input" placeholder="manner">
-        <button id="submit-btn">Submit</button>
+        <button class="glass-button" id="submit-btn">Submit</button>
         <p id="feedback"></p>
     `;
 
