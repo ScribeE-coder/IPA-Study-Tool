@@ -90,7 +90,8 @@ let currentSymbol;
 function renderQuiz() {
     currentSymbol = getSymbol();
     const container = document.querySelector('.quiz-container');
-
+    let wrongCounter = 0; 
+    
     container.innerHTML = `
         <h2>${currentSymbol}</h2>
         <input type="text" id="voicing-input" placeholder="voicing">
