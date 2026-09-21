@@ -77,11 +77,12 @@ function checkAnswer(symbol, parsed_dict, userVoicing, userPlace, userManner) {
     return (userVoicing === correctVoicing) && (userPlace === correctPlace) && (userManner === correctManner);
 }
 
-function soundFind() {
+function soundFind(symbol) { /* Pick a symbol, play its corresponding sound, user has to put voice, manner, and place */
+    var sound = IPA_Sound_dict[symbol]; 
     return;
 }
 
-function sagittalFind() {
+function sagittalFind() { /* Produce sagittal diagram and user puts voice, manner, and place */
     return;
 }
 
@@ -91,7 +92,7 @@ function renderQuiz() {
     currentSymbol = getSymbol();
     const container = document.querySelector('.quiz-container');
     let wrongCounter = 0; 
-    
+
     container.innerHTML = `
         <h2>${currentSymbol}</h2>
         <input type="text" id="voicing-input" placeholder="voicing">
