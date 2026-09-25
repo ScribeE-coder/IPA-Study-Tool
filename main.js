@@ -52,6 +52,32 @@ const IPA_Sound_dict = {
     "w": "[w]hy is you in my business?"                
 };
 
+const IPA_Sag = {
+    "p": null, 
+    "b": null, 
+    "t": null, 
+    "d": null, 
+    "k": null, 
+    "g": null, 
+    "m": null, 
+    "n": null, 
+    "ŋ": null, 
+    "f": null, 
+    "v": null, 
+    "θ": null, 
+    "ð": null, 
+    "s": null, 
+    "z": null, 
+    "ʃ": null, 
+    "ʒ": null, 
+    "h": null, 
+    "ʔ": null, 
+    "ɹ": null, 
+    "j": null, 
+    "l": null, 
+    "w": null
+}; 
+
 function parse(input) {
     const parsed = {};
     for (const [symbol, desc] of Object.entries(input)) {
@@ -83,7 +109,8 @@ function soundFind(symbol) { /* Pick a symbol, play its corresponding sound, use
 }
 
 function sagittalFind() { /* Produce sagittal diagram and user puts voice, manner, and place */
-    return;
+    const symbol = getSymbol(); 
+    return symbol; 
 }
 
 let currentSymbol;
