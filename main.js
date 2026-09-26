@@ -108,9 +108,18 @@ function soundFind(symbol) { /* Pick a symbol, play its corresponding sound, use
     return;
 }
 
-function sagittalFind() { /* Produce sagittal diagram and user puts voice, manner, and place */
-    const symbol = getSymbol(); 
-    return symbol; 
+function sagittalFind(symbol) { /* Produce sagittal diagram and user puts voice, manner, and place */
+
+    return IPA_English_dict[symbol]; 
+}
+
+/* once user gets it's wrong 3 times in a row, reveal the correct answer */
+function correctReveal(wrongAttempts) {
+    if (wrongAttempts >= 3) {
+        return true; 
+    } else {
+        return false; 
+    }
 }
 
 let currentSymbol;
@@ -118,7 +127,7 @@ let currentSymbol;
 function renderQuiz() {
     currentSymbol = getSymbol();
     const container = document.querySelector('.quiz-container');
-    let wrongCounter = 0; 
+    let wrongCheck = 0; 
 
     container.innerHTML = `
         <h2>${currentSymbol}</h2>
@@ -135,8 +144,16 @@ function renderQuiz() {
         const userManner = document.getElementById('manner-input').value.trim().toLowerCase();
 
         const isCorrect = checkAnswer(currentSymbol, parsedDict, userVoicing, userPlace, userManner);
-        document.getElementById('feedback').textContent = isCorrect ? "Correct" : "Not quite, try again.";
+        if (!isCorrect) {
+            wrongCheck += 1; 
+        }
 
+        if (correctReveal(wrongCheck)) {
+            document.getElementById('feedback').textContent = IPA_English_dict[currentSymbol]; 
+        } else {
+            document.getElementById('feedback').textContent = isCorrect ? "Correct" : "Not quite, try again.";
+        }
+        
         if (isCorrect) {
             setTimeout(renderQuiz, 1000);
         }
