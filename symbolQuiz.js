@@ -108,11 +108,6 @@ function soundFind(symbol) { /* Pick a symbol, play its corresponding sound, use
     return;
 }
 
-function sagittalFind(symbol) { /* Produce sagittal diagram and user puts voice, manner, and place */
-
-    return IPA_English_dict[symbol]; 
-}
-
 /* once user gets it's wrong 3 times in a row, reveal the correct answer */
 function correctReveal(wrongAttempts) {
     if (wrongAttempts >= 3) {
