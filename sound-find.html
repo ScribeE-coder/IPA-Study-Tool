@@ -1,7 +1,36 @@
 <!DOCTYPE html>
-<html> 
+<html>
 <head>
-    <title>Sound Find Quiz</title>
+    <title>Sound Quiz</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<body>
+    <script>
+    </script>
+    
+    <div class="header-container">
+        <h1>IPA Location Quiz</h1>
+    </div>
+
+    <script type="text/javascript">
+        function playthenGo(url) {
+            const audio = new Audio('Button Click.mp3'); 
+            audio.play(); 
+            audio.onended = () => window.location.href = url; 
+        }
+    </script>
+        <!-- Button to return back to the homepage -->
+        <div class="main-menu">
+            <button class="my-button" onclick="playthenGo('index.html')">
+            <span class="button_top">Back to Main Menu</span>
+            </button>
+
+            <div class="quiz-container">
+            <!-- Quiz content will go here -->
+            </div>
+        </div>
+
+    <script src="main.js"></script>
+
+</body>
 </html>

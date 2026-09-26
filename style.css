@@ -190,4 +190,7 @@ h2 {
 
 #feedback {
   color:whitesmoke; 
+  font-family: 'Gill Sans', 'Gill Sans MIT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px; 
+  margin-bottom: 20px;
 }
