@@ -35,7 +35,24 @@ function parse(input) {
     return parsed;
 }
 
-const parsedDict = parse(IPA_English_dict);
+const parsedDict = parse(IPA_English_dict); /* entire IPA dictionary mapping symbol with voicing, place, and manner*/
+
+function getSymbol() {
+    const symbols = Object.keys(IPA_English_dict); 
+    return symbols[Math.floor(Math.random() * symbols.length)]; 
+}
+
+let symbol = getSymbol(); 
+
+displaySagittalQuiz(symbol); 
+
+function displaySagittalQuiz(currentSymbol) {
+    const diagram = document.getElementById("Sagittal-Diagrams"); 
+    const fallbackText = document.getElementById("diagram-fallback"); 
+    
+    // construct path to sag diagram for current symbol 
+    return;
+}
 
 function getDiagram() {
     return; 
