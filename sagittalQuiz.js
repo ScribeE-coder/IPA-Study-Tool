@@ -44,20 +44,18 @@ function getSymbol() {
 
 let symbol = getSymbol(); 
 
-displaySagittalQuiz(symbol); 
+displaySagittalQuiz(symbol);
 
 function displaySagittalQuiz(currentSymbol) {
     const diagram = document.getElementById("Sagittal-Diagrams"); 
     const fallbackText = document.getElementById("diagram-fallback"); 
     
     // construct path to sag diagram for current symbol 
+    const imagePath = `./Sagittal-Diagrams/${currentSymbol}.png`;
+
     return;
 }
 
 function getDiagram() {
     return; 
-}
-
-function sagittalFind(symbol) { 
-    return IPA_English_dict[symbol]; 
 }
