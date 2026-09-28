@@ -19,7 +19,7 @@ const IPA_English_dict = {
     "ʃ": "voiceless postalveolar fricative",
     "ʒ": "voiced postalveolar fricative",
     "h": "voiceless glottal fricative", 
-    "ʔ": "voiced glottal plosive",
+    "ʔ": "voiceless glottal plosive",
     "ɹ": "voiced alveolar approximant",
     "j": "voiced palatal approximant",
     "l": "voiced alveolar lateral-approximant",
@@ -52,32 +52,6 @@ const IPA_Sound_dict = {
     "w": "[w]hy is you in my business?"                
 };
 
-const IPA_Sag = {
-    "p": null, 
-    "b": null, 
-    "t": null, 
-    "d": null, 
-    "k": null, 
-    "g": null, 
-    "m": null, 
-    "n": null, 
-    "ŋ": null, 
-    "f": null, 
-    "v": null, 
-    "θ": null, 
-    "ð": null, 
-    "s": null, 
-    "z": null, 
-    "ʃ": null, 
-    "ʒ": null, 
-    "h": null, 
-    "ʔ": null, 
-    "ɹ": null, 
-    "j": null, 
-    "l": null, 
-    "w": null
-}; 
-
 function parse(input) {
     const parsed = {};
     for (const [symbol, desc] of Object.entries(input)) {
@@ -90,7 +64,7 @@ function parse(input) {
 const parsedDict = parse(IPA_English_dict);
 
 function getSymbol() {
-    const symbols = Object.keys(IPA_English_dict);
+    const symbols = Object.keys(parsedDict);
     return symbols[Math.floor(Math.random() * symbols.length)];
 }
 
@@ -101,11 +75,6 @@ function checkAnswer(symbol, parsed_dict, userVoicing, userPlace, userManner) {
     const correctManner = correctAnswer[2];
 
     return (userVoicing === correctVoicing) && (userPlace === correctPlace) && (userManner === correctManner);
-}
-
-function soundFind(symbol) { /* Pick a symbol, play its corresponding sound, user has to put voice, manner, and place */
-    var sound = IPA_Sound_dict[symbol]; 
-    return;
 }
 
 /* once user gets it's wrong 3 times in a row, reveal the correct answer */

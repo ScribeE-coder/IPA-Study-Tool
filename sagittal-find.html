@@ -1,27 +1,30 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Sagittal Quiz</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <script></script> 
-    <div class="header-container">
-        <h1>Sagittal Find Quiz</h1>
-    </div>
-    <script>
+<html lang="en">
+    <head>
+        <title>Sagittal Quiz</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body> 
+        <script></script>
+
+        <div class="header-container">
+            <h1>Sagittal Diagram Quiz</h1>
+        </div>
+
+        <script type="text/javascript">
+            function playThenGo(url) {
+                const audio = new Audio('Button Click.mp3'); 
+                audio.play(); 
+                audio.onended = () => window.location.href = url; 
+            }
+        </script>
+
         <div class="main-menu"> 
-            <button class="my-button" onclick="playthenGo('index.html')">
-                <span class="button-top">Back to Main Menu</span>
+            <button class="my-button" onclick="playThenGo('index.html')">
+            <span class="button_top">Back to Main Menu</span>
             </button>
         </div>
-    </script>
-    <div class="quiz-container">
-        <div class="diagram-box">
-            <img id="Sagittal-Diagrams" src="" alt="Sagittal Diagram Quiz" style="max-width: 300px; display: none">
-            <p id="diagram-fallback" style="display: none;">Diagram not yet available</p>
-        </div>
-    </div>
-    <script src="sagittalQuiz.js"></script>
-</body>
+    </body>
 </html>

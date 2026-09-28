@@ -1,61 +1,96 @@
-/* Produce sagittal diagram and user puts voice, manner, and place */
-
 const IPA_English_dict = {
-    "p": "voiceless bilabial plosive", /* p has pic */
-    "b": "voiced bilabial plosive", /*b has pic */
-    "t": "voiceless alveolar plosive", /*t has pic */
-    "d": "voiced alveolar plosive", /*d has pic */
-    "k": "voiceless velar plosive", /*k has pic */
-    "g": "voiced velar plosive", /*g has pic*/
-    "m": "voiced bilabial nasal", /*m has pic*/
-    "n": "voiced alveolar nasal", /*n has pic*/
-    "ŋ": "voiced velar nasal", /*n has pic */
-    "f": "voiceless labiodental fricative", /*f has pic*/
-    "v": "voiced labiodental fricative", /*v has pic */
-    "θ": "voiceless dental fricative", /*theta has pic*/
-    "ð": "voiced dental fricative", /*pic has been added*/
-    "s": "voiceless alveolar fricative", /*s has pic*/
-    "z": "voiced alveolar fricative", /*z has pic*/
-    "ʃ": "voiceless postalveolar fricative",/*has pic*/
-    "ʒ": "voiced postalveolar fricative", /*has pic*/
-    "h": "voiceless glottal fricative", /*has pic*/
-    "ʔ": "voiced glottal plosive", /*has pic*/
-    "ɹ": "voiced alveolar approximant", /*has pic*/
-    "j": "voiced palatal approximant", /*j has pic*/
-    "l": "voiced alveolar lateral-approximant", /*l has pic*/
-    "w": "voiced labial velar-approximant" /*w has pic*/
+    "p": "voiceless bilabial plosive",
+    "b": "voiced bilabial plosive",
+    "t": "voiceless alveolar plosive",
+    "d": "voiced alveolar plosive",
+    "k": "voiceless velar plosive",
+    "g": "voiced velar plosive",
+    "m": "voiced bilabial nasal",
+    "n": "voiced alveolar nasal",
+    "ŋ": "voiced velar nasal",
+    "f": "voiceless labiodental fricative",
+    "v": "voiced labiodental fricative",
+    "θ": "voiceless dental fricative",
+    "ð": "voiced dental fricative",
+    "s": "voiceless alveolar fricative",
+    "z": "voiced alveolar fricative",
+    "ʃ": "voiceless postalveolar fricative",
+    "ʒ": "voiced postalveolar fricative",
+    "h": "voiceless glottal fricative",
+    "ʔ": "voiceless glottal plosive",
+    "ɹ": "voiced alveolar approximant",
+    "j": "voiced palatal approximant",
+    "l": "voiced alveolar lateral-approximant",
+    "w": "voiced labial velar-approximant"
 };
 
 function parse(input) {
     const parsed = {};
     for (const [symbol, desc] of Object.entries(input)) {
         const [voicing, place, manner] = desc.split(" ");
-        parsed[symbol] = {voicing, place, manner};
+        parsed[symbol] = { voicing, place, manner };
     }
     return parsed;
 }
 
-const parsedDict = parse(IPA_English_dict); /* entire IPA dictionary mapping symbol with voicing, place, and manner*/
+const parsedDict = parse(IPA_English_dict);
 
 function getSymbol() {
-    const symbols = Object.keys(IPA_English_dict); 
+    const symbols = Object.keys(parsedDict); 
     return symbols[Math.floor(Math.random() * symbols.length)]; 
 }
 
-let symbol = getSymbol(); 
+let currentSymbol = getSymbol(); 
 
-displaySagittalQuiz(symbol);
+function playthenGo(url) {
+    const audio = new Audio('Button Click.mp3'); 
+    audio.play().catch(() => {}); 
+    audio.onended = () => window.location.href = url; 
+}
 
-function displaySagittalQuiz(currentSymbol) {
+function displaySagittalQuiz(symbolKey) {
     const diagram = document.getElementById("Sagittal-Diagrams"); 
     const fallbackText = document.getElementById("diagram-fallback"); 
+
+    diagram.onload = () => {
+        diagram.style.display = "block";
+        fallbackText.style.display = "none";
+    };
     
-    // construct path to sag diagram for current symbol 
-    const imagePath = `./Sagittal-Diagrams/${currentSymbol}.png`;
-
-    return;
+    diagram.onerror = () => {
+        diagram.style.display = "none";
+        fallbackText.style.display = "block";
+    };
+    diagram.src = `./Sagittal-Diagrams/${symbolKey}.png`;
 }
 
-function getDiagram() {
-    return; 
+function checkAnswer() {
+    const userVoicing = document.getElementById("voicing-select").value;
+    const userPlace = document.getElementById("place-select").value;
+    const userManner = document.getElementById("manner-select").value;
+    const feedback = document.getElementById("feedback-msg");
+
+    const target = parsedDict[currentSymbol];
+
+    if (userVoicing === target.voicing && userPlace === target.place && userManner === target.manner) {
+        feedback.style.color = "#4CAF50";
+        feedback.textContent = "Correct! Loading next diagram...";
+        setTimeout(() => {
+            feedback.textContent = "";
+            document.getElementById("voicing-select").value = "";
+            document.getElementById("place-select").value = "";
+            document.getElementById("manner-select").value = "";
+            
+            currentSymbol = getSymbol();
+            displaySagittalQuiz(currentSymbol);
+        }, 1500);
+    } else {
+        feedback.style.color = "#f44336";
+        feedback.textContent = `Incorrect. The correct answer for /${currentSymbol}/ is: ${target.voicing} ${target.place} ${target.manner}.`;
+    }
 }
+
+// Start quiz when DOM is ready
+document.addEventListener("DOMContentLoaded", () => {
+    displaySagittalQuiz(currentSymbol);
+});

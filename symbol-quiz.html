@@ -1,35 +1,34 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Symbol Location Quiz</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <script>
-    </script>
+<html lang="en">
+    <head>
+        <title>Symbol Location Quiz</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <script>
+        </script>
     
-    <div class="header-container">
-        <h1>IPA Location Quiz</h1>
-    </div>
-
-    <script type="text/javascript">
-        function playthenGo(url) {
-            const audio = new Audio('Button Click.mp3'); 
-            audio.play(); 
-            audio.onended = () => window.location.href = url; 
-        }
-    </script>
-        <!-- Button to return back to the homepage -->
-        <div class="main-menu">
-            <button class="my-button" onclick="playthenGo('index.html')">
-            <span class="button_top">Back to Main Menu</span>
-            </button>
-
-            <div class="quiz-container">
-            </div>
+        <div class="header-container">
+            <h1>IPA Location Quiz</h1>
         </div>
 
-    <script src="symbolQuiz.js"></script>
+        <script type="text/javascript">
+            function playthenGo(url) {
+                const audio = new Audio('Button Click.mp3'); 
+                audio.play(); 
+                audio.onended = () => window.location.href = url; 
+            }
+        </script>
+            <div class="main-menu">
+                <button class="my-button" onclick="playthenGo('index.html')">
+                <span class="button_top">Back to Main Menu</span>
+                </button>
 
-</body>
+                <div class="quiz-container"></div>
+            
+            </div>
+
+        <script src="symbolQuiz.js"></script>
+
+    </body>
 </html>
