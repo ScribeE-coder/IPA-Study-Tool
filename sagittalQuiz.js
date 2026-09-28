@@ -71,6 +71,17 @@ function checkAnswer() {
     const feedback = document.getElementById("feedback-msg");
 
     const target = parsedDict[currentSymbol];
+    const container = document.querySelector("quiz-container"); 
+
+    container.innerHTML = `
+        <h2>${currentSymbol}</h2>
+        <input type="text" id="voicing-input" placeholder="voicing">
+        <input type="text" id="place-input" placeholder="place">
+        <input type="text" id="manner-input" placeholder="manner">
+        <button class="glass-button" id="submit-btn">Submit</button>
+        <p id="feedback"></p>
+    `;
+
 
     if (userVoicing === target.voicing && userPlace === target.place && userManner === target.manner) {
         feedback.style.color = "#4CAF50";

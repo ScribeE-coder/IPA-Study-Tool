@@ -6,12 +6,25 @@
         <link rel="stylesheet" href="style.css">
     </head>
 
-    <body> 
-        <script></script>
-
+    <body class="sagittal-page"> 
         <div class="header-container">
             <h1>Sagittal Diagram Quiz</h1>
         </div>
+
+        <div class="main-menu"> 
+            <div class="quiz-container">
+                <div class="diagram-box">
+                    <img id="Sagittal-Diagrams" alt="Sagittal Diagram">
+                    <p id="fallback">No Diagrams Available At This Time</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="quiz-container"></div>
+
+        <button class="my-button" onclick="playThenGo('index.html')">
+        <span class="button_top">Back to Main Menu</span>
+        </button>
 
         <script type="text/javascript">
             function playThenGo(url) {
@@ -21,10 +34,6 @@
             }
         </script>
 
-        <div class="main-menu"> 
-            <button class="my-button" onclick="playThenGo('index.html')">
-            <span class="button_top">Back to Main Menu</span>
-            </button>
-        </div>
+        <script src="sagittalQuiz.js"></script>
     </body>
 </html>
