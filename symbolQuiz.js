@@ -62,6 +62,7 @@ function parse(input) {
 }
 
 const parsedDict = parse(IPA_English_dict);
+console.log(parsedDict); 
 
 function getSymbol() {
     const symbols = Object.keys(parsedDict);

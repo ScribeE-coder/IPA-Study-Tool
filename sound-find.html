@@ -12,6 +12,13 @@
         <h1>IPA Location Quiz</h1>
     </div>
 
+    <div class="main-menu">
+        <button class="my-button" onclick="playthenGo('index.html')">
+        <span class="button_top">Back to Main Menu</span>
+        </button>
+        <p>Sound Quiz Coming Soon!</p>
+        <div class="quiz-container"></div>
+
     <script type="text/javascript">
         function playthenGo(url) {
             const audio = new Audio('Button Click.mp3'); 
@@ -19,16 +26,6 @@
             audio.onended = () => window.location.href = url; 
         }
     </script>
-        <!-- Button to return back to the homepage -->
-        <div class="main-menu">
-            <button class="my-button" onclick="playthenGo('index.html')">
-            <span class="button_top">Back to Main Menu</span>
-            </button>
-
-            <div class="quiz-container">
-            <!-- Quiz content will go here -->
-            </div>
-        </div>
 
     <script src="main.js"></script>
 

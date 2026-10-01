@@ -1,28 +1,3 @@
-const IPA_English_dict = {
-    "p": "voiceless bilabial plosive", 
-    "b": "voiced bilabial plosive", 
-    "t": "voiceless alveolar plosive", 
-    "d": "voiced alveolar plosive", 
-    "k": "voiceless velar plosive", 
-    "g": "voiced velar plosive", 
-    "m": "voiced bilabial nasal", 
-    "n": "voiced alveolar nasal",
-    "ŋ": "voiced velar nasal", 
-    "f": "voiceless labiodental fricative",
-    "v": "voiced labiodental fricative",
-    "θ": "voiceless dental fricative",
-    "ð": "voiced dental fricative",
-    "s": "voiceless alveolar fricative",
-    "z": "voiced alveolar fricative", 
-    "ʃ": "voiceless postalveolar fricative",
-    "ʒ": "voiced postalveolar fricative",
-    "h": "voiceless glottal fricative", 
-    "ʔ": "voiced glottal plosive",
-    "ɹ": "voiced alveolar approximant",
-    "j": "voiced palatal approximant",
-    "l": "voiced alveolar lateral-approximant",
-    "w": "voiced labial velar-approximant" 
-};
 
 const IPA_Sound_dict = { 
     "p": "[p]ut my shit back",
@@ -50,29 +25,7 @@ const IPA_Sound_dict = {
     "w": "[w]hy is you in my business?"                
 };
 
-const IPA_Sag = {
-    "p": null, 
-    "b": null, 
-    "t": null, 
-    "d": null, 
-    "k": null, 
-    "g": null, 
-    "m": null, 
-    "n": null, 
-    "ŋ": null, 
-    "f": null, 
-    "v": null, 
-    "θ": null, 
-    "ð": null, 
-    "s": null, 
-    "z": null, 
-    "ʃ": null, 
-    "ʒ": null, 
-    "h": null, 
-    "ʔ": null, 
-    "ɹ": null, 
-    "j": null, 
-    "l": null, 
-    "w": null
-}; 
+
+
+
 

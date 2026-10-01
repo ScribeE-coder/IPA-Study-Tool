@@ -1,107 +1,63 @@
 const IPA_English_dict = {
-    "p": "voiceless bilabial plosive",
-    "b": "voiced bilabial plosive",
-    "t": "voiceless alveolar plosive",
-    "d": "voiced alveolar plosive",
-    "k": "voiceless velar plosive",
-    "g": "voiced velar plosive",
-    "m": "voiced bilabial nasal",
-    "n": "voiced alveolar nasal",
-    "ŋ": "voiced velar nasal",
-    "f": "voiceless labiodental fricative",
-    "v": "voiced labiodental fricative",
-    "θ": "voiceless dental fricative",
-    "ð": "voiced dental fricative",
-    "s": "voiceless alveolar fricative",
-    "z": "voiced alveolar fricative",
-    "ʃ": "voiceless postalveolar fricative",
-    "ʒ": "voiced postalveolar fricative",
-    "h": "voiceless glottal fricative",
-    "ʔ": "voiceless glottal plosive",
-    "ɹ": "voiced alveolar approximant",
-    "j": "voiced palatal approximant",
-    "l": "voiced alveolar lateral-approximant",
-    "w": "voiced labial velar-approximant"
+    "p": {"voiceless bilabial plosive": "./Sagittal-Diagrams/p.png"},
+    "b": {"voiced bilabial plosive": "./Sagittal-Diagrams/b.png"},
+    "t": {"voiceless alveolar plosive": "./Sagittal-Diagrams/t.png"},
+    "d": {"voiced alveolar plosive": "./Sagittal-Diagrams/d.png"},
+    "k": {"voiceless velar plosive": "./Sagittal-Diagrams/k.png"},
+    "g": {"voiced velar plosive": "./Sagittal-Diagrams/g.png"},
+    "m": {"voiced bilabial nasal": "./Sagittal-Diagrams/m.png"},
+    "n": {"voiced alveolar nasal": "./Sagittal-Diagrams/n.png"},
+    "ŋ": {"voiced velar nasal": "./Sagittal-Diagrams/ŋ.png"},
+    "f": {"voiceless labiodental fricative": "./Sagittal-Diagrams/f.png"},
+    "v": {"voiced labiodental fricative": "./Sagittal-Diagrams/v.png"},
+    "θ": {"voiceless dental fricative": "./Sagittal-Diagrams/θ.png"},
+    "ð": {"voiced dental fricative": "./Sagittal-Diagrams/ð.png"},
+    "s": {"voiceless alveolar fricative": "./Sagittal-Diagrams/s.png"},
+    "z": {"voiced alveolar fricative": "./Sagittal-Diagrams/z.png"},
+    "ʃ": {"voiceless postalveolar fricative": "./Sagittal-Diagrams/ʃ.png"},
+    "ʒ": {"voiced postalveolar fricative": "./Sagittal-Diagrams/ʒ.png"},
+    "h": {"voiceless glottal fricative":"./Sagittal-Diagrams/h.png"},
+    "ʔ": {"voiceless glottal plosive": "./Sagittal-Diagrams/ʔ.png"},
+    "ɹ": {"voiced alveolar approximant": "./Sagittal-Diagrams/ɹ.png"},
+    "j": {"voiced palatal approximant": "./Sagittal-Diagrams/j.png"},
+    "l": {"voiced alveolar lateral-approximant": "./Sagittal-Diagrams/l.png"},
+    "w": {"voiced labial-velar approximant": "./Sagittal-Diagrams/w.png"}
 };
 
+parsed = parse(IPA_English_dict); 
+
 function parse(input) {
-    const parsed = {};
-    for (const [symbol, desc] of Object.entries(input)) {
-        const [voicing, place, manner] = desc.split(" ");
-        parsed[symbol] = { voicing, place, manner };
+    const parsed = {}; 
+    for (const [symbol, dict] of Object.entries(input)) {
+        for (const [desc, img] of Object.entries(dict)) {
+            const[voicing, place, manner] = desc.split(" "); 
+            parsed[symbol] = {voicing, place, manner, img}; 
+        }
     }
     return parsed;
 }
 
-const parsedDict = parse(IPA_English_dict);
-
-function getSymbol() {
-    const symbols = Object.keys(parsedDict); 
+function getSymbol(dict) {
+    const symbols = Object.keys(dict); 
     return symbols[Math.floor(Math.random() * symbols.length)]; 
 }
 
-let currentSymbol = getSymbol(); 
-
-function playthenGo(url) {
-    const audio = new Audio('Button Click.mp3'); 
-    audio.play().catch(() => {}); 
-    audio.onended = () => window.location.href = url; 
+function getDiagram(char) { /* pass in symbol and get its corresponding diagram */
+    imgSrc = parsed[char].img; 
+    return imgSrc; 
 }
 
-function displaySagittalQuiz(symbolKey) {
-    const diagram = document.getElementById("Sagittal-Diagrams"); 
-    const fallbackText = document.getElementById("diagram-fallback"); 
-
-    diagram.onload = () => {
-        diagram.style.display = "block";
-        fallbackText.style.display = "none";
-    };
-    
-    diagram.onerror = () => {
-        diagram.style.display = "none";
-        fallbackText.style.display = "block";
-    };
-    diagram.src = `./Sagittal-Diagrams/${symbolKey}.png`;
-}
-
-function checkAnswer() {
-    const userVoicing = document.getElementById("voicing-select").value;
-    const userPlace = document.getElementById("place-select").value;
-    const userManner = document.getElementById("manner-select").value;
-    const feedback = document.getElementById("feedback-msg");
-
-    const target = parsedDict[currentSymbol];
-    const container = document.querySelector("quiz-container"); 
-
-    container.innerHTML = `
-        <h2>${currentSymbol}</h2>
-        <input type="text" id="voicing-input" placeholder="voicing">
-        <input type="text" id="place-input" placeholder="place">
-        <input type="text" id="manner-input" placeholder="manner">
-        <button class="glass-button" id="submit-btn">Submit</button>
-        <p id="feedback"></p>
-    `;
-
-
-    if (userVoicing === target.voicing && userPlace === target.place && userManner === target.manner) {
-        feedback.style.color = "#4CAF50";
-        feedback.textContent = "Correct! Loading next diagram...";
-        setTimeout(() => {
-            feedback.textContent = "";
-            document.getElementById("voicing-select").value = "";
-            document.getElementById("place-select").value = "";
-            document.getElementById("manner-select").value = "";
-            
-            currentSymbol = getSymbol();
-            displaySagittalQuiz(currentSymbol);
-        }, 1500);
+function correctReveal(wrongAttempts) {
+    if (wrongAttempts >= 3) {
+        return true; 
     } else {
-        feedback.style.color = "#f44336";
-        feedback.textContent = `Incorrect. The correct answer for /${currentSymbol}/ is: ${target.voicing} ${target.place} ${target.manner}.`;
+        return false; 
     }
 }
 
-// Start quiz when DOM is ready
-document.addEventListener("DOMContentLoaded", () => {
-    displaySagittalQuiz(currentSymbol);
-});
+function renderQuiz() {
+    
+    return; 
+}
+
+
