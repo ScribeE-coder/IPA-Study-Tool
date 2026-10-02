@@ -55,9 +55,53 @@ function correctReveal(wrongAttempts) {
     }
 }
 
-function renderQuiz() {
-    
-    return; 
+function checkAnswer(symbol, voice, place, manner) {
+    if ((parsed[symbol]["voicing"] === voice) && (parsed[symbol]["place"] === place) && (parsed[symbol]["manner"] === manner)) {
+        return true;
+    } else {
+        return false;
+    }
 }
+
+function renderQuiz() { 
+    var symbol = getSymbol(parsed); 
+    /* getting img element from HTML file with that name, then assiging img element's source to img pathway so it can be displayed */
+    const diagram = document.getElementById("Sagittal-Diagrams"); 
+    diagram.src = getDiagram(symbol); 
+    /* container is ID element who's innerHTML gets assigned to create the buttons users will use to type in answers */
+    const container = document.getElementById("answer-area");
+    let wrongChecker = 0; 
+
+    container.innerHTML = `
+        <input type="text" id="voicing-input" placeholder="voicing">
+        <input type="text" id="place-input" placeholder="place">
+        <input type="text" id="manner-input" placeholder="manner">
+        <button class="glass-button" id="submit-btn">Submit</button>
+        <p id="feedback"></p>
+    `;
+   
+    document.getElementById('submit-btn').addEventListener('click', () => {
+        const userVoice = document.getElementById('voicing-input').value.trim().toLowerCase(); 
+        const userPlace = document.getElementById('place-input').value.trim().toLowerCase(); 
+        const userManner = document.getElementById('manner-input').value.trim().toLowerCase(); 
+        const isCorrect = checkAnswer(symbol, userVoice, userPlace, userManner); 
+        
+        if (!isCorrect) {
+            wrongChecker += 1;
+            if (correctReveal(wrongChecker)) {
+                document.getElementById('feedback').textContent = `The correct answer is ${parsed[symbol]["voicing"] + " " + parsed[symbol]["place"] + " " + parsed[symbol]["manner"]}`; 
+            } else {
+                document.getElementById('feedback').textContent = isCorrect ? "That's correct!": "Not quite, try again.";
+            }
+        } else {
+            setTimeout(renderQuiz, 1000); 
+        }
+    });
+
+    return null;  
+}
+
+renderQuiz(); 
+
 
 
