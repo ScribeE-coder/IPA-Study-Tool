@@ -72,6 +72,7 @@ function renderQuiz() {
     const container = document.getElementById("answer-area");
     let wrongChecker = 0; 
 
+    /* creating the buttons for user input */
     container.innerHTML = `
         <input type="text" id="voicing-input" placeholder="voicing">
         <input type="text" id="place-input" placeholder="place">
@@ -94,6 +95,8 @@ function renderQuiz() {
                 document.getElementById('feedback').textContent = isCorrect ? "That's correct!": "Not quite, try again.";
             }
         } else {
+            /* If answer is correct move on to the next diagram */
+            document.getElementById('feedback').textContent = "That's correct!"; 
             setTimeout(renderQuiz, 1000); 
         }
     });

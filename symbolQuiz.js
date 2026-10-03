@@ -87,10 +87,8 @@ function correctReveal(wrongAttempts) {
     }
 }
 
-let currentSymbol;
-
 function renderQuiz() {
-    currentSymbol = getSymbol();
+    var currentSymbol = getSymbol();
     const container = document.querySelector('.quiz-container');
     let wrongCheck = 0; 
 
@@ -109,18 +107,17 @@ function renderQuiz() {
         const userManner = document.getElementById('manner-input').value.trim().toLowerCase();
 
         const isCorrect = checkAnswer(currentSymbol, parsedDict, userVoicing, userPlace, userManner);
-        if (!isCorrect) {
-            wrongCheck += 1; 
-        }
-
-        if (correctReveal(wrongCheck)) {
-            document.getElementById('feedback').textContent = IPA_English_dict[currentSymbol]; 
-        } else {
-            document.getElementById('feedback').textContent = isCorrect ? "Correct" : "Not quite, try again.";
-        }
         
-        if (isCorrect) {
-            setTimeout(renderQuiz, 1000);
+        if (!isCorrect) {
+            wrongCheck += 1;
+            if (correctReveal(wrongCheck)) {
+                document.getElementById('feedback').textContent = parsedDict[currentSymbol]; 
+            } else {
+                document.getElementById('feedback').textContent = isCorrect ? "Correct": "Not quite, try again.";
+            }
+        } else {
+            document.getElementById('feedback').textContent = "That's correct!"; 
+            setTimeout(renderQuiz, 1000); 
         }
     });
 }
