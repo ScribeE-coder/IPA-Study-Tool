@@ -195,3 +195,30 @@ h2 {
   font-size: 20px; 
   margin-bottom: 20px;
 }
+
+/* Sagittal quiz page */
+.sagittal-page .main-menu {
+  gap: 24px;
+  padding: 40px 20px;
+}
+
+#Sagittal-Diagrams {
+  max-width: 360px;
+  width: 100%;
+  border-radius: 12px;
+}
+
+#answer-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  max-width: 960px;
+}
+
+#answer-area #feedback {
+  flex-basis: 100%;
+  margin: 8px 0 0;
+  text-align: center;
+}

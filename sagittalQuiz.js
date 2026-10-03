@@ -99,7 +99,7 @@ function renderQuiz() {
             document.getElementById('feedback').textContent = "That's correct!"; 
             setTimeout(renderQuiz, 1000); 
         }
-    });
+    })
 
     return null;  
 }
