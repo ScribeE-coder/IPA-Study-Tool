@@ -42,7 +42,7 @@ function getSymbol(dict) {
     return symbols[Math.floor(Math.random() * symbols.length)]; 
 }
 
-function getDiagram(char) { /* pass in symbol and get its corresponding diagram */
+function getDiagram(char) { /* pass in symbol and get its corresponding diagram via parsed dictionary */
     imgSrc = parsed[char].img; 
     return imgSrc; 
 }
